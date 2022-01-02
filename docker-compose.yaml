@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - 28017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_INITDB_ROOT_PASSWORD
+      - APP_USER=$APP_USER
+      - APP_PWD=$APP_PWD
+      - DB_NAME=$DB_NAME
+      - DB_COLLECTION_NAME=$DB_COLLECTION_NAME
+      - MONGO_HOSTNAME=$MONGO_HOSTNAME
+    volumes:
+      - ./mongo/init/:/docker-entrypoint-initdb.d
+      - ./mongo/init:/home/mongodb
+      # - ./mongo/seed/:/home/mongodb/seed
+      - learning_materials_data:/data/db
+volumes:
+  learning_materials_data:

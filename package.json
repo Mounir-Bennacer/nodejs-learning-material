@@ -1,0 +1,57 @@
+{
+  "name": "nodejs-learning-material",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "repository": "git@github.com:Mounir-Bennacer/nodejs-learning-material.git",
+  "author": "Mounir-Bennacer <benphaoris@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "build:api": "tsc -p ./server/tsconfig.api.json",
+    "start:api": "node ./dist/index.js",
+    "dev": "concurrently -k \"tsc -p ./tsconfig.json -w\" \"nodemon -r ./dist/index.js --watch\"",
+    "mongo:start": "docker-compose up -d mongo",
+    "mongo:stop": "docker-compose stop mongo",
+    "mongo:clean": "docker-compose rm -f mongo",
+    "postinstall": "npm run build && npm run start"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.12",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "helmet": "^4.6.0",
+    "joi": "^17.5.0",
+    "module-alias": "^2.2.2",
+    "mongodb": "^4.2.2",
+    "mongoose": "^6.1.4",
+    "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.2",
+    "@types/express": "^4.17.13",
+    "@types/mongodb": "^4.0.7",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^17.0.6",
+    "@types/supertest": "^2.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
+    "concurrently": "^6.5.1",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.4.5",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "supertest": "^6.1.6",
+    "tsc-watch": "^4.6.0"
+  },
+  "_moduleAliases": {
+    "@/resources/*": "dist/resources",
+    "@/middlewares": "dist/middlewares",
+    "@utils": "dist/utils"
+  }
+}
